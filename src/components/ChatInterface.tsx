@@ -61,8 +61,8 @@ const ChatInterface = () => {
   };
 
   return (
-    <Card className="h-full flex flex-col shadow-lg border-blue-200">
-      <CardHeader className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-t-lg">
+    <Card className="h-full flex flex-col shadow-lg border-border">
+      <CardHeader className="bg-gradient-to-r from-primary to-primary/90 text-primary-foreground rounded-t-lg">
         <CardTitle className="flex items-center space-x-2">
           <Bot className="h-5 w-5" />
           <span>Pharmaceutical Research Agent</span>
@@ -80,8 +80,8 @@ const ChatInterface = () => {
                 }`}
               >
                 {message.sender === 'agent' && (
-                  <Avatar className="h-8 w-8 bg-blue-600">
-                    <AvatarFallback className="bg-blue-600 text-white">
+                  <Avatar className="h-8 w-8 bg-primary">
+                    <AvatarFallback className="bg-primary text-primary-foreground">
                       <Bot className="h-4 w-4" />
                     </AvatarFallback>
                   </Avatar>
@@ -90,8 +90,8 @@ const ChatInterface = () => {
                 <div
                   className={`max-w-[80%] rounded-lg px-4 py-2 ${
                     message.sender === 'user'
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-100 text-gray-900'
+                      ? 'bg-primary text-primary-foreground'
+                      : 'bg-muted text-muted-foreground'
                   }`}
                 >
                   <p className="text-sm">{message.content}</p>
@@ -101,8 +101,8 @@ const ChatInterface = () => {
                 </div>
                 
                 {message.sender === 'user' && (
-                  <Avatar className="h-8 w-8 bg-indigo-600">
-                    <AvatarFallback className="bg-indigo-600 text-white">
+                  <Avatar className="h-8 w-8 bg-primary/80">
+                    <AvatarFallback className="bg-primary/80 text-primary-foreground">
                       <User className="h-4 w-4" />
                     </AvatarFallback>
                   </Avatar>
@@ -112,16 +112,16 @@ const ChatInterface = () => {
             
             {isTyping && (
               <div className="flex items-start space-x-3">
-                <Avatar className="h-8 w-8 bg-blue-600">
-                  <AvatarFallback className="bg-blue-600 text-white">
+                <Avatar className="h-8 w-8 bg-primary">
+                  <AvatarFallback className="bg-primary text-primary-foreground">
                     <Bot className="h-4 w-4" />
                   </AvatarFallback>
                 </Avatar>
-                <div className="bg-gray-100 rounded-lg px-4 py-2">
+                <div className="bg-muted rounded-lg px-4 py-2">
                   <div className="flex space-x-1">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                    <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce"></div>
+                    <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                    <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
                   </div>
                 </div>
               </div>
@@ -129,18 +129,18 @@ const ChatInterface = () => {
           </div>
         </ScrollArea>
         
-        <div className="p-4 border-t border-gray-200">
+        <div className="p-4 border-t border-border">
           <div className="flex space-x-2">
             <Input
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyPress={handleKeyPress}
               placeholder="Ask about drug compounds, clinical trials, regulatory guidelines..."
-              className="flex-1 border-blue-200 focus:border-blue-400"
+              className="flex-1 border-input focus:border-primary"
             />
             <Button 
               onClick={handleSend}
-              className="bg-blue-600 hover:bg-blue-700"
+              className="bg-primary hover:bg-primary/90"
               disabled={!input.trim() || isTyping}
             >
               <Send className="h-4 w-4" />

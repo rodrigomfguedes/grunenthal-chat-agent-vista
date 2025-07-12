@@ -84,11 +84,11 @@ const AgentReasoning = () => {
   const getStatusIcon = (status: string) => {
     switch (status) {
       case 'completed':
-        return <CheckCircle className="h-4 w-4 text-green-600" />;
+        return <CheckCircle className="h-4 w-4 text-primary" />;
       case 'active':
-        return <Clock className="h-4 w-4 text-blue-600 animate-spin" />;
+        return <Clock className="h-4 w-4 text-primary animate-spin" />;
       case 'pending':
-        return <AlertCircle className="h-4 w-4 text-gray-400" />;
+        return <AlertCircle className="h-4 w-4 text-muted-foreground" />;
       default:
         return null;
     }
@@ -97,21 +97,21 @@ const AgentReasoning = () => {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'completed':
-        return 'bg-green-100 text-green-800 border-green-200';
+        return 'bg-primary/10 text-primary border-primary/20';
       case 'active':
-        return 'bg-blue-100 text-blue-800 border-blue-200';
+        return 'bg-accent text-accent-foreground border-border';
       case 'pending':
-        return 'bg-gray-100 text-gray-600 border-gray-200';
+        return 'bg-muted text-muted-foreground border-border';
       default:
-        return 'bg-gray-100 text-gray-600 border-gray-200';
+        return 'bg-muted text-muted-foreground border-border';
     }
   };
 
   return (
-    <Card className="h-full shadow-lg border-blue-200">
+    <Card className="h-full shadow-lg border-border">
       <CardHeader className="pb-3">
         <CardTitle className="flex items-center space-x-2 text-lg">
-          <Brain className="h-5 w-5 text-purple-600" />
+          <Brain className="h-5 w-5 text-primary" />
           <span>Agent Reasoning</span>
         </CardTitle>
       </CardHeader>
@@ -124,15 +124,15 @@ const AgentReasoning = () => {
                 key={step.id}
                 className={`relative p-4 rounded-lg border transition-all duration-300 ${
                   step.status === 'active' 
-                    ? 'bg-blue-50 border-blue-200 shadow-md' 
+                    ? 'bg-accent border-border shadow-md' 
                     : step.status === 'completed'
-                    ? 'bg-green-50 border-green-200'
-                    : 'bg-gray-50 border-gray-200'
+                    ? 'bg-primary/5 border-primary/20'
+                    : 'bg-muted/50 border-border'
                 }`}
               >
                 {/* Connection Line */}
                 {index < reasoningSteps.length - 1 && (
-                  <div className="absolute left-7 top-12 w-0.5 h-8 bg-gray-300"></div>
+                  <div className="absolute left-7 top-12 w-0.5 h-8 bg-border"></div>
                 )}
                 
                 <div className="flex items-start space-x-3">
@@ -142,22 +142,22 @@ const AgentReasoning = () => {
                   
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between mb-2">
-                      <h4 className="font-medium text-gray-900">{step.step}</h4>
+                      <h4 className="font-medium text-foreground">{step.step}</h4>
                       <Badge className={`text-xs ${getStatusColor(step.status)}`}>
                         {step.status.toUpperCase()}
                       </Badge>
                     </div>
                     
-                    <p className="text-sm text-gray-600 mb-2">
+                    <p className="text-sm text-muted-foreground mb-2">
                       {step.description}
                     </p>
                     
-                    <div className="flex items-center justify-between text-xs text-gray-500">
+                    <div className="flex items-center justify-between text-xs text-muted-foreground">
                       <span>{step.timestamp.toLocaleTimeString()}</span>
                       {step.confidence && (
                         <span className="flex items-center space-x-1">
                           <span>Confidence:</span>
-                          <span className="font-medium text-blue-600">
+                          <span className="font-medium text-primary">
                             {step.confidence}%
                           </span>
                         </span>
@@ -166,8 +166,8 @@ const AgentReasoning = () => {
                     
                     {step.status === 'active' && (
                       <div className="mt-2">
-                        <div className="w-full bg-gray-200 rounded-full h-1.5">
-                          <div className="bg-blue-600 h-1.5 rounded-full animate-pulse" style={{width: '60%'}}></div>
+                        <div className="w-full bg-muted rounded-full h-1.5">
+                          <div className="bg-primary h-1.5 rounded-full animate-pulse" style={{width: '60%'}}></div>
                         </div>
                       </div>
                     )}
@@ -177,24 +177,24 @@ const AgentReasoning = () => {
             ))}
             
             {/* Current Reasoning Context */}
-            <div className="mt-6 p-4 bg-purple-50 border border-purple-200 rounded-lg">
-              <h5 className="font-medium text-purple-900 mb-2">Current Context</h5>
+            <div className="mt-6 p-4 bg-accent border border-border rounded-lg">
+              <h5 className="font-medium text-accent-foreground mb-2">Current Context</h5>
               <div className="space-y-2 text-sm">
                 <div className="flex items-center justify-between">
-                  <span className="text-purple-700">Domain:</span>
+                  <span className="text-muted-foreground">Domain:</span>
                   <span className="font-medium">Pharmaceutical Research</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-purple-700">Query Type:</span>
+                  <span className="text-muted-foreground">Query Type:</span>
                   <span className="font-medium">Clinical Information</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-purple-700">Sources Retrieved:</span>
+                  <span className="text-muted-foreground">Sources Retrieved:</span>
                   <span className="font-medium">3 documents</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-purple-700">Confidence Level:</span>
-                  <span className="font-medium text-green-600">High (88%)</span>
+                  <span className="text-muted-foreground">Confidence Level:</span>
+                  <span className="font-medium text-primary">High (88%)</span>
                 </div>
               </div>
             </div>

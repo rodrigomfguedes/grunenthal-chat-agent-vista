@@ -59,21 +59,21 @@ const DocumentCarousel = () => {
 
   const getTypeColor = (type: string) => {
     switch (type) {
-      case 'research': return 'bg-blue-100 text-blue-800 border-blue-200';
-      case 'clinical': return 'bg-green-100 text-green-800 border-green-200';
-      case 'regulatory': return 'bg-purple-100 text-purple-800 border-purple-200';
-      default: return 'bg-gray-100 text-gray-800 border-gray-200';
+      case 'research': return 'bg-primary/10 text-primary border-primary/20';
+      case 'clinical': return 'bg-accent text-accent-foreground border-border';
+      case 'regulatory': return 'bg-secondary text-secondary-foreground border-border';
+      default: return 'bg-muted text-muted-foreground border-border';
     }
   };
 
   const currentDoc = sampleDocuments[currentIndex];
 
   return (
-    <Card className="h-full shadow-lg border-blue-200">
+    <Card className="h-full shadow-lg border-border">
       <CardHeader className="pb-3">
         <div className="flex items-center justify-between">
           <CardTitle className="flex items-center space-x-2 text-lg">
-            <FileText className="h-5 w-5 text-blue-600" />
+            <FileText className="h-5 w-5 text-primary" />
             <span>Retrieved Documents</span>
           </CardTitle>
           <div className="flex items-center space-x-2">
@@ -86,7 +86,7 @@ const DocumentCarousel = () => {
             >
               <ChevronLeft className="h-4 w-4" />
             </Button>
-            <span className="text-sm text-gray-500 min-w-[60px] text-center">
+            <span className="text-sm text-muted-foreground min-w-[60px] text-center">
               {currentIndex + 1} of {sampleDocuments.length}
             </span>
             <Button
@@ -111,18 +111,18 @@ const DocumentCarousel = () => {
                 {currentDoc.type.toUpperCase()}
               </Badge>
               <div className="flex items-center space-x-2">
-                <div className="text-sm font-medium text-green-600">
+                <div className="text-sm font-medium text-primary">
                   {currentDoc.relevance}% match
                 </div>
-                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
               </div>
             </div>
             
-            <h3 className="font-semibold text-gray-900 mb-1 leading-tight">
+            <h3 className="font-semibold text-foreground mb-1 leading-tight">
               {currentDoc.title}
             </h3>
             
-            <div className="flex items-center justify-between text-sm text-gray-600">
+            <div className="flex items-center justify-between text-sm text-muted-foreground">
               <span>{currentDoc.source}</span>
               <span>{new Date(currentDoc.date).toLocaleDateString()}</span>
             </div>
@@ -131,25 +131,25 @@ const DocumentCarousel = () => {
           {/* Document Content */}
           <ScrollArea className="flex-1">
             <div className="pr-4">
-              <p className="text-sm text-gray-700 leading-relaxed mb-4">
+              <p className="text-sm text-muted-foreground leading-relaxed mb-4">
                 {currentDoc.excerpt}
               </p>
               
               <div className="space-y-2">
                 <div className="flex items-center space-x-2 text-sm">
-                  <span className="font-medium text-gray-600">Key findings:</span>
+                  <span className="font-medium text-foreground">Key findings:</span>
                 </div>
-                <ul className="text-sm text-gray-600 space-y-1 ml-4">
+                <ul className="text-sm text-muted-foreground space-y-1 ml-4">
                   <li className="flex items-start">
-                    <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                    <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 mr-2 flex-shrink-0"></span>
                     Significant reduction in pain scores (p&lt;0.001)
                   </li>
                   <li className="flex items-start">
-                    <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                    <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 mr-2 flex-shrink-0"></span>
                     Improved quality of life metrics
                   </li>
                   <li className="flex items-start">
-                    <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                    <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 mr-2 flex-shrink-0"></span>
                     Favorable safety profile maintained
                   </li>
                 </ul>
@@ -158,7 +158,7 @@ const DocumentCarousel = () => {
           </ScrollArea>
           
           {/* Document Actions */}
-          <div className="pt-3 mt-3 border-t border-gray-200">
+          <div className="pt-3 mt-3 border-t border-border">
             <Button variant="outline" size="sm" className="w-full">
               <ExternalLink className="h-4 w-4 mr-2" />
               View Full Document
