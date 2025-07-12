@@ -3,10 +3,11 @@ import ChatInterface from "@/components/ChatInterface";
 import DocumentCarousel from "@/components/DocumentCarousel";
 import AgentReasoning from "@/components/AgentReasoning";
 import UserHeader from "@/components/UserHeader";
+import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
-    <div className="h-screen bg-gradient-to-br from-green-50 to-white flex flex-col">
+    <div className="h-[800px] bg-gradient-to-br from-green-50 to-white flex flex-col">
       <UserHeader />
       
       <div className="flex-1 container mx-auto px-4 py-4">
@@ -30,6 +31,8 @@ const Index = () => {
           </div>
         </div>
       </div>
+      
+      <Footer />
     </div>
   );
 };
