@@ -1,10 +1,14 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { ChevronLeft, ChevronRight, FileText, ExternalLink } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  FileText,
+  ExternalLink,
+} from "lucide-react";
 
 interface Document {
   id: string;
@@ -12,38 +16,41 @@ interface Document {
   source: string;
   relevance: number;
   excerpt: string;
-  type: 'research' | 'clinical' | 'regulatory';
+  type: "research" | "clinical" | "regulatory";
   date: string;
 }
 
 const sampleDocuments: Document[] = [
   {
-    id: '1',
-    title: 'Novel Pain Management Compounds in Phase III Trials',
-    source: 'Journal of Pharmaceutical Sciences',
+    id: "1",
+    title: "Novel Pain Management Compounds in Phase III Trials",
+    source: "Journal of Pharmaceutical Sciences",
     relevance: 95,
-    excerpt: 'This comprehensive study evaluates the efficacy and safety profile of next-generation analgesic compounds, focusing on non-opioid mechanisms for chronic pain management...',
-    type: 'research',
-    date: '2024-01-15'
+    excerpt:
+      "This comprehensive study evaluates the efficacy and safety profile of next-generation analgesic compounds, focusing on non-opioid mechanisms for chronic pain management...",
+    type: "research",
+    date: "2024-01-15",
   },
   {
-    id: '2',
-    title: 'EMA Guidelines for Analgesic Drug Development',
-    source: 'European Medicines Agency',
+    id: "2",
+    title: "EMA Guidelines for Analgesic Drug Development",
+    source: "European Medicines Agency",
     relevance: 88,
-    excerpt: 'Updated regulatory framework for the development and approval of pain management therapeutics, including new safety requirements and efficacy endpoints...',
-    type: 'regulatory',
-    date: '2023-11-20'
+    excerpt:
+      "Updated regulatory framework for the development and approval of pain management therapeutics, including new safety requirements and efficacy endpoints...",
+    type: "regulatory",
+    date: "2023-11-20",
   },
   {
-    id: '3',
-    title: 'Clinical Trial Results: GTH-001 vs Standard Care',
-    source: 'New England Journal of Medicine',
+    id: "3",
+    title: "Clinical Trial Results: GTH-001 vs Standard Care",
+    source: "New England Journal of Medicine",
     relevance: 92,
-    excerpt: 'Randomized controlled trial comparing GTH-001 with current standard of care in 1,200 patients with chronic neuropathic pain. Primary endpoint met with statistical significance...',
-    type: 'clinical',
-    date: '2024-02-28'
-  }
+    excerpt:
+      "Randomized controlled trial comparing GTH-001 with current standard of care in 1,200 patients with chronic neuropathic pain. Primary endpoint met with statistical significance...",
+    type: "clinical",
+    date: "2024-02-28",
+  },
 ];
 
 const DocumentCarousel = () => {
@@ -54,15 +61,21 @@ const DocumentCarousel = () => {
   };
 
   const prevDocument = () => {
-    setCurrentIndex((prev) => (prev - 1 + sampleDocuments.length) % sampleDocuments.length);
+    setCurrentIndex(
+      (prev) => (prev - 1 + sampleDocuments.length) % sampleDocuments.length
+    );
   };
 
   const getTypeColor = (type: string) => {
     switch (type) {
-      case 'research': return 'bg-primary/10 text-primary border-primary/20';
-      case 'clinical': return 'bg-accent text-accent-foreground border-border';
-      case 'regulatory': return 'bg-secondary text-secondary-foreground border-border';
-      default: return 'bg-muted text-muted-foreground border-border';
+      case "research":
+        return "bg-primary/10 text-primary border-primary/20";
+      case "clinical":
+        return "bg-accent text-accent-foreground border-border";
+      case "regulatory":
+        return "bg-secondary text-secondary-foreground border-border";
+      default:
+        return "bg-muted text-muted-foreground border-border";
     }
   };
 
@@ -101,8 +114,8 @@ const DocumentCarousel = () => {
           </div>
         </div>
       </CardHeader>
-      
-      <CardContent className="h-[calc(100%-80px)]">
+
+      <CardContent className="h-[calc(100%-60px)]">
         <div className="h-full flex flex-col">
           {/* Document Header */}
           <div className="mb-4">
@@ -117,27 +130,29 @@ const DocumentCarousel = () => {
                 <div className="w-2 h-2 bg-primary rounded-full"></div>
               </div>
             </div>
-            
+
             <h3 className="font-semibold text-foreground mb-1 leading-tight">
               {currentDoc.title}
             </h3>
-            
+
             <div className="flex items-center justify-between text-sm text-muted-foreground">
               <span>{currentDoc.source}</span>
               <span>{new Date(currentDoc.date).toLocaleDateString()}</span>
             </div>
           </div>
-          
+
           {/* Document Content */}
           <ScrollArea className="flex-1">
             <div className="pr-4">
               <p className="text-sm text-muted-foreground leading-relaxed mb-4">
                 {currentDoc.excerpt}
               </p>
-              
+
               <div className="space-y-2">
                 <div className="flex items-center space-x-2 text-sm">
-                  <span className="font-medium text-foreground">Key findings:</span>
+                  <span className="font-medium text-foreground">
+                    Key findings:
+                  </span>
                 </div>
                 <ul className="text-sm text-muted-foreground space-y-1 ml-4">
                   <li className="flex items-start">
@@ -156,7 +171,7 @@ const DocumentCarousel = () => {
               </div>
             </div>
           </ScrollArea>
-          
+
           {/* Document Actions */}
           <div className="pt-3 mt-3 border-t border-border">
             <Button variant="outline" size="sm" className="w-full">
