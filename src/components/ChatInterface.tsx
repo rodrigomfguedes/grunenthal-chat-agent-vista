@@ -67,7 +67,7 @@ const ChatInterface = () => {
       const msgText =
         error.name === "TimeoutError"
           ? "Something went wrong in the backend (20s timeout, probably neo4j query)."
-          : "Desculpa, ocorreu um erro ao tentar responder.";
+          : "Sorry, something went wrong trying to get the answer to that question. Retry please";
       const errorMsg: Message = {
         id: (Date.now() + 2).toString(),
         content: msgText,
