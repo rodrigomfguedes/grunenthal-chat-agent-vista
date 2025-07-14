@@ -18,7 +18,7 @@ const ChatInterface = () => {
     {
       id: "1",
       content:
-        "Hello! I'm your pharmaceutical research assistant. I can help you with drug discovery, clinical trials, regulatory information, and more. What would you like to know?",
+        "Hello! I'm your pharmaceutical research assistant. I can help you with connecting drug with manufacturers, adverse effects and give you an overview of Grunenthal's 24/25 financial report. What would you like to know?",
       sender: "agent",
       timestamp: new Date(Date.now() - 5 * 60 * 1000),
     },
