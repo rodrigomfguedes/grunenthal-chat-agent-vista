@@ -44,7 +44,9 @@ const ChatInterface = () => {
       const signal = AbortSignal.timeout(20_000); // timeout de 20s :contentReference[oaicite:1]{index=1}
 
       const res = await fetch(
-        `http://127.0.0.1:8000/run-agent?query=${encodeURIComponent(input)}`,
+        `https://api.jornadaespiritual.eu/run-agent?query=${encodeURIComponent(
+          input
+        )}`,
         { signal }
       );
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
