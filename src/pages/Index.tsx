@@ -21,10 +21,10 @@ const Index = () => {
             <DocumentCarousel />
           </div> */}
 
-          {/* Agent Reasoning */}
+          {/* Agent Reasoning
           <div className="h-[700px] w-[450px]">
             <AgentReasoning />
-          </div>
+          </div> */}
         </div>
       </div>
 

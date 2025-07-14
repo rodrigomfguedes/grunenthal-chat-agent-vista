@@ -35,22 +35,47 @@ const ChatInterface = () => {
       sender: "user",
       timestamp: new Date(),
     };
-
     setMessages((prev) => [...prev, userMessage]);
     setInput("");
     setIsTyping(true);
 
-    // Simulate agent response
-    setTimeout(() => {
+    try {
+      const controller = new AbortController();
+      const signal = AbortSignal.timeout(20_000); // timeout de 20s :contentReference[oaicite:1]{index=1}
+
+      const res = await fetch(
+        `http://127.0.0.1:8000/run-agent?query=${encodeURIComponent(input)}`,
+        { signal }
+      );
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+      console.log("Resposta completa:", data);
+
+      const content = data.model_output ?? data.output ?? JSON.stringify(data);
+
       const agentMessage: Message = {
         id: (Date.now() + 1).toString(),
-        content: `I understand you're asking about "${input}". Let me analyze the relevant pharmaceutical literature and provide you with evidence-based insights. I'm currently retrieving documents from clinical databases and research papers to give you the most accurate information.`,
+        content,
         sender: "agent",
         timestamp: new Date(),
       };
       setMessages((prev) => [...prev, agentMessage]);
+    } catch (error) {
+      console.error("Erro ao chamar agente:", error);
+      const msgText =
+        error.name === "TimeoutError"
+          ? "Something went wrong in the backend (20s timeout, probably neo4j query)."
+          : "Desculpa, ocorreu um erro ao tentar responder.";
+      const errorMsg: Message = {
+        id: (Date.now() + 2).toString(),
+        content: msgText,
+        sender: "agent",
+        timestamp: new Date(),
+      };
+      setMessages((prev) => [...prev, errorMsg]);
+    } finally {
       setIsTyping(false);
-    }, 2000);
+    }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
