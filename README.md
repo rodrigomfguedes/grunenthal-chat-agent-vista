@@ -1,6 +1,6 @@
-# Autocomplete component example
+# Pharma Chatbot UI
 
-This project is an example of a autcomplete component that calls an API to show a suggestion list to the user.
+This project is an example of a Chatbot that uses an API to query information about drugs and Grunenthal's 24/25 financial report
 
 ## Tech stack
 
